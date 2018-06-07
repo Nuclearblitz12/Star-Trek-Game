@@ -12,22 +12,9 @@ class Character:
         self.enemy = "Klingons"
         self.friend = "Enterprise"
 
-    def take_phaserdamage(self):
-        damage=random.randrange(0,20)
+    def take_damage(self):
+        damage=random.randrange(0,25)
         if damage < 0:
-            print("%s evades attack." % (self.friend))
-        elif damage < self.shields:
-            self.shields = self.shields - damage
-            print('%s receives %s damage to shields' % (self.friend, damage))
-        elif damage > self.shields:
-            damage = damage - self.shields
-            self.shields = 0
-            self.hull = self.hull - damage
-            print('%s receives %s damage to hull' % (self.friend, damage))
-
-    def take_torpedodamage(self):
-        damage = random.randrange(0, 30)
-        if damage == 0:
             print("%s evades attack." % (self.friend))
         elif damage < self.shields:
             self.shields = self.shields - damage
@@ -127,13 +114,13 @@ if __name__ == '__main__':
         if action == 'P':
             my_ship.Phasers()
             enemy_ship.deal_phaserdamage()
-            my_ship.take_phaserdamage()
+            my_ship.take_damage()
             if my_ship.power_systems > 0:
                 print("Power Systems down to {}".format(my_ship.power_systems))
         elif action == 'T':
             my_ship.Torpedos()
             enemy_ship.deal_torpedodamage()
-            my_ship.take_torpedodamage()
+            my_ship.take_damage()
             if my_ship.torpedos > 0:
                 print("We have {} Torpedos left".format(my_ship.torpedos))
         elif action == 'D':
